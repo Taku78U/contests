@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+  int k, x;
+  cin >> k >> x;
+  cin.ignore();
+
+  if(500 * k >= x) {
+    cout << "Yes" << endl;
+  } else {
+    cout << "No" << endl;
+  }
+  return 0;
+}
