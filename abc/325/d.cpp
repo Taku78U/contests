@@ -84,7 +84,7 @@ ll solve()
 ll solve2()
 {
     priority_queue<ll, vector<ll>, greater<ll>> tmp;
-    tmp.push(TD[0].t + TD[0].d);
+    tmp.push(TD[0].t + TD[0].d - 1);
     int ptr = 0;
     for (int i = 1; i < N; ++i)
     {
@@ -92,7 +92,7 @@ ll solve2()
         {
             break;
         }
-        tmp.push(TD[i].t + TD[i].d);
+        tmp.push(TD[i].t + TD[i].d - 1);
         ptr = i;
     }
 
@@ -107,15 +107,15 @@ ll solve2()
         int num_out = 0;
         while(!tmp.empty())
         {
-            if (ptr < N && t >= TD[ptr].t)
-            {
-                break;
-            }
             const auto f = tmp.top();
             if (f < t)
             {
                 tmp.pop();
                 continue;
+            }
+            if (ptr < N && t >= TD[ptr].t)
+            {
+                break;
             }
             ++rtn;
             ++t;
@@ -129,7 +129,8 @@ ll solve2()
         }
 
         t = TD[ptr].t;
-        tmp.push(TD[ptr].t + TD[ptr].d);
+        tmp.push(TD[ptr].t + TD[ptr].d - 1);
+        ++ptr;
         for (; ptr < N; ++ptr)
         {
             if (TD[ptr].t == t)
@@ -144,6 +145,6 @@ ll solve2()
 int main()
 {
     read();
-    cout << solve() << endl;
+    cout << solve2() << endl;
     return 0;
 }
